@@ -1,4 +1,4 @@
-resource "aws_launch_template" "klever_template" {
+resource "aws_launch_template" "rancher_template" {
   name      = var.template_data_name
   image_id  = "ami-0261755bbcb8c4a84"
   key_name  = var.key_name
@@ -24,7 +24,7 @@ resource "aws_launch_template" "klever_template" {
 
 
 
-resource "aws_autoscaling_group" "klever-as" {
+resource "aws_autoscaling_group" "rancher-as" {
  vpc_zone_identifier       = [var.subnets.first, var.subnets.second]
   name                      = var.as_group_data.name
   capacity_rebalance        = true
@@ -71,8 +71,8 @@ resource "aws_autoscaling_group" "klever-as" {
     launch_template {
       launch_template_specification {
 
-        launch_template_id   = aws_launch_template.klever_template.id
-        launch_template_name = aws_launch_template.klever_template.name
+        launch_template_id   = aws_launch_template.rancher_template.id
+        launch_template_name = aws_launch_template.rancher_template.name
         version              = "$Latest"
 
       }
@@ -87,7 +87,7 @@ resource "aws_autoscaling_group" "klever-as" {
     }
   }
   depends_on = [
-    aws_launch_template.klever_template,
+    aws_launch_template.rancher_template,
     var.as_group_data
   ]
 }

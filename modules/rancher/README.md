@@ -16,7 +16,7 @@ To deploy Rancher:
 1. Point the source property in module to [Module's GitHub](https://github.com/GabSnow24/rancher-tf) using release tags (recommended), example:
     ```
     module "rancher" {
-      source = "git::https://github.com/GabSnow24/rancher-tf//modules//rancher?ref=0.0.1"
+      source = "git::https://github.com/GabSnow24/rancher-tf//modules//rancher?ref=v0.0.1"
       [...]
     }
     ```
@@ -26,7 +26,7 @@ To deploy Rancher:
     * key_name (String - The name of ssh key that will be used to access the host by ssh protocol, default name is "cluster_key")
     ```
     module "rancher" {
-      source = "git::https://github.com/GabSnow24/rancher-tf//modules//rancher?ref=0.0.1"
+      source = "git::https://github.com/GabSnow24/rancher-tf//modules//rancher?ref=v0.0.1"
       cluster_name = "rke"
       rancher_password = "12345678"
       key_name = "rke_key"
