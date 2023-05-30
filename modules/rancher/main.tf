@@ -1,5 +1,5 @@
 module "cluster_autoscaling" {
-  source             = "../autoscaling"
+  source             = "git::https://github.com/GabSnow24/rancher-tf//modules//autoscaling?ref=${local.release_version}"
   template_data_name = "${var.cluster_name}-template"
   security_group = {
     id = module.security_groups.web_sg.id
@@ -16,14 +16,14 @@ module "cluster_autoscaling" {
 }
 
 module "security_groups" {
-  source = "../sg"
+  source = "git::https://github.com/GabSnow24/rancher-tf//modules/sg?ref=${local.release_version}"
   vpc_data = {
     id = module.network.vpc_id
   }
 }
 
 module "network" {
-  source = "../network"
+  source = "git::https://github.com/GabSnow24/rancher-tf//modules//network?ref=${local.release_version}"
   vpc_data = {
     cidr_block = "172.31.0.0/16"
     name       = "VPC K8S"
